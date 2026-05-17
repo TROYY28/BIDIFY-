@@ -1,0 +1,15 @@
+* text=auto
+
+# Mark infrastructure files as documentation, not code
+Dockerfile linguist-documentation
+*.bat linguist-documentation
+railway.toml linguist-documentation
+vercel.json linguist-documentation
+eslint.config.mjs linguist-documentation
+postcss.config.mjs linguist-documentation
+
+# Ensure JavaScript/TypeScript are recognized
+*.js linguist-language=JavaScript
+*.ts linguist-language=TypeScript
+*.tsx linguist-language=TypeScript
+*.jsx linguist-language=JavaScript
