@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}BIDIFY - Home{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>📋 Tender Dashboard</h1>
+    <p>Browse and manage all available tenders</p>
+</div>
+
+<!-- Statistics -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <i class="fas fa-list"></i>
+        <h3>Total Tenders</h3>
+        <p class="stat-number" id="total-tenders">0</p>
+    </div>
+    <div class="stat-card open">
+        <i class="fas fa-unlock"></i>
+        <h3>Open</h3>
+        <p class="stat-number" id="open-tenders">0</p>
+    </div>
+    <div class="stat-card review">
+        <i class="fas fa-magnifying-glass"></i>
+        <h3>Under Review</h3>
+        <p class="stat-number" id="review-tenders">0</p>
+    </div>
+    <div class="stat-card awarded">
+        <i class="fas fa-trophy"></i>
+        <h3>Awarded</h3>
+        <p class="stat-number" id="awarded-tenders">0</p>
+    </div>
+    <div class="stat-card closed">
+        <i class="fas fa-lock"></i>
+        <h3>Closed</h3>
+        <p class="stat-number" id="closed-tenders">0</p>
+    </div>
+</div>
+
+<!-- Search & Filter -->
+<div class="search-filter-section">
+    <form method="get" class="search-form">
+        <div class="search-group">
+            <input type="text" name="search" placeholder="🔍 Search tenders..." 
+                   value="{{ current_search }}" class="search-input">
+        </div>
+        
+        <div class="filter-group">
+            <select name="category" class="filter-select">
+                <option value="">All Categories</option>
+                {% for cat in categories %}
+                <option value="{{ cat }}" {% if cat == current_category %}selected{% endif %}>{{ cat }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <select name="status" class="filter-select">
+                <option value="">All Status</option>
+                {% for s in statuses %}
+                <option value="{{ s }}" {% if s == current_status %}selected{% endif %}>{{ s }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <button type="submit" class="btn-filter">
+            <i class="fas fa-search"></i> Filter
+        </button>
+    </form>
+</div>
+
+<!-- Tenders List -->
+<div class="tenders-section">
+    {% if tenders %}
+        <div class="tenders-grid">
+            {% for tender in tenders %}
+            <div class="tender-card status-{{ tender.status|lower|replace(' ', '-') }}">
+                <div class="tender-header">
+                    <h3 class="tender-title">{{ tender.title }}</h3>
+                    <span class="status-badge status-{{ tender.status|lower|replace(' ', '-') }}">
+                        {{ tender.status }}
+                    </span>
+                </div>
+                
+                <p class="tender-description">{{ tender.description[:100] }}...</p>
+                
+                <div class="tender-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-tag"></i>
+                        <span>{{ tender.category }}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>Deadline: {{ tender.deadline }}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-money-bill"></i>
+                        <span>{{ tender.budget }}</span>
+                    </div>
+                </div>
+                
+                <a href="{{ url_for('view_tender', tender_id=tender.id) }}" class="btn-view">
+                    View Details <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="no-results">
+            <i class="fas fa-inbox"></i>
+            <h3>No tenders found</h3>
+            <p>Try adjusting your search or filters</p>
+            <a href="{{ url_for('index') }}" class="btn-primary">Clear Filters</a>
+        </div>
+    {% endif %}
+</div>
+
+<script>
+// Load statistics on page load
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('/api/statistics')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('total-tenders').textContent = data.total;
+            document.getElementById('open-tenders').textContent = data.open;
+            document.getElementById('review-tenders').textContent = data.under_review;
+            document.getElementById('awarded-tenders').textContent = data.awarded;
+            document.getElementById('closed-tenders').textContent = data.closed;
+        })
+        .catch(error => console.error('Error loading statistics:', error));
+});
+</script>
+{% endblock %}

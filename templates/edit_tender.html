@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Tender - BIDIFY{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <a href="{{ url_for('view_tender', tender_id=tender.id) }}" class="back-link">
+        <i class="fas fa-arrow-left"></i> Back to Tender
+    </a>
+    <h1>✏️ Edit Tender</h1>
+    <p>Update tender information</p>
+</div>
+
+<div class="form-container">
+    <form method="POST" class="tender-form">
+        <div class="form-section">
+            <h2>Basic Information</h2>
+            
+            <div class="form-group">
+                <label for="title" class="required">Tender Title</label>
+                <input type="text" id="title" name="title" required 
+                       value="{{ tender.title }}"
+                       class="form-input">
+            </div>
+            
+            <div class="form-group">
+                <label for="description" class="required">Description</label>
+                <textarea id="description" name="description" required 
+                          rows="5" class="form-textarea">{{ tender.description }}</textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="category" class="required">Category</label>
+                    <select id="category" name="category" required class="form-select">
+                        {% for cat in categories %}
+                        <option value="{{ cat }}" {% if cat == tender.category %}selected{% endif %}>{{ cat }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select id="status" name="status" class="form-select">
+                        {% for s in statuses %}
+                        <option value="{{ s }}" {% if s == tender.status %}selected{% endif %}>{{ s }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h2>Budget & Timeline</h2>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="budget" class="required">Budget Range</label>
+                    <input type="text" id="budget" name="budget" required 
+                           value="{{ tender.budget }}"
+                           class="form-input">
+                </div>
+                
+                <div class="form-group">
+                    <label for="deadline" class="required">Deadline</label>
+                    <input type="date" id="deadline" name="deadline" required 
+                           value="{{ tender.deadline }}"
+                           class="form-input">
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h2>Location</h2>
+            
+            <div class="form-group">
+                <label for="location" class="required">Work Location</label>
+                <input type="text" id="location" name="location" required 
+                       value="{{ tender.location }}"
+                       class="form-input">
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h2>Contact Information</h2>
+            
+            <div class="form-group">
+                <label for="contact_name" class="required">Contact Person</label>
+                <input type="text" id="contact_name" name="contact_name" required 
+                       value="{{ tender.contact_name }}"
+                       class="form-input">
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="contact_email" class="required">Email</label>
+                    <input type="email" id="contact_email" name="contact_email" required 
+                           value="{{ tender.contact_email }}"
+                           class="form-input">
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact_phone" class="required">Phone</label>
+                    <input type="tel" id="contact_phone" name="contact_phone" required 
+                           value="{{ tender.contact_phone }}"
+                           class="form-input">
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-actions">
+            <a href="{{ url_for('view_tender', tender_id=tender.id) }}" class="btn-secondary">
+                <i class="fas fa-times"></i> Cancel
+            </a>
+            <button type="submit" class="btn-primary">
+                <i class="fas fa-save"></i> Save Changes
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

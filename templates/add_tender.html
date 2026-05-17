@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Add New Tender - BIDIFY{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <a href="{{ url_for('index') }}" class="back-link">
+        <i class="fas fa-arrow-left"></i> Back to Tenders
+    </a>
+    <h1>+ Add New Tender</h1>
+    <p>Submit a new tender opportunity</p>
+</div>
+
+<div class="form-container">
+    <form method="POST" class="tender-form">
+        <div class="form-section">
+            <h2>Basic Information</h2>
+            
+            <div class="form-group">
+                <label for="title" class="required">Tender Title</label>
+                <input type="text" id="title" name="title" required 
+                       placeholder="e.g., Asbestos Survey - Industrial Complex"
+                       class="form-input">
+            </div>
+            
+            <div class="form-group">
+                <label for="description" class="required">Description</label>
+                <textarea id="description" name="description" required 
+                          placeholder="Detailed description of the tender..."
+                          rows="5" class="form-textarea"></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="category" class="required">Category</label>
+                    <select id="category" name="category" required class="form-select">
+                        <option value="">Select a category</option>
+                        {% for cat in categories %}
+                        <option value="{{ cat }}">{{ cat }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select id="status" name="status" class="form-select">
+                        {% for s in statuses %}
+                        <option value="{{ s }}" {% if s == 'Open' %}selected{% endif %}>{{ s }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h2>Budget & Timeline</h2>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="budget" class="required">Budget Range</label>
+                    <input type="text" id="budget" name="budget" required 
+                           placeholder="e.g., $50,000 - $100,000"
+                           class="form-input">
+                </div>
+                
+                <div class="form-group">
+                    <label for="deadline" class="required">Deadline</label>
+                    <input type="date" id="deadline" name="deadline" required class="form-input">
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h2>Location</h2>
+            
+            <div class="form-group">
+                <label for="location" class="required">Work Location</label>
+                <input type="text" id="location" name="location" required 
+                       placeholder="e.g., Cape Town, Western Cape"
+                       class="form-input">
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h2>Contact Information</h2>
+            
+            <div class="form-group">
+                <label for="contact_name" class="required">Contact Person</label>
+                <input type="text" id="contact_name" name="contact_name" required 
+                       placeholder="Full name"
+                       class="form-input">
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="contact_email" class="required">Email</label>
+                    <input type="email" id="contact_email" name="contact_email" required 
+                           placeholder="email@example.com"
+                           class="form-input">
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact_phone" class="required">Phone</label>
+                    <input type="tel" id="contact_phone" name="contact_phone" required 
+                           placeholder="+27 21 555 0100"
+                           class="form-input">
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-actions">
+            <a href="{{ url_for('index') }}" class="btn-secondary">
+                <i class="fas fa-times"></i> Cancel
+            </a>
+            <button type="submit" class="btn-primary">
+                <i class="fas fa-plus"></i> Add Tender
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

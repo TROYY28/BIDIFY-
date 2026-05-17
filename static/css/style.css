@@ -1,0 +1,943 @@
+/* ============================================================================
+   BIDIFY - Tender Management Platform
+   Main Stylesheet
+   ============================================================================ */
+
+:root {
+    /* Colors */
+    --primary: #3b82f6;
+    --primary-dark: #1e40af;
+    --primary-light: #dbeafe;
+    --secondary: #10b981;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #0ea5e9;
+    
+    /* Status Colors */
+    --status-open: #10b981;
+    --status-under-review: #f59e0b;
+    --status-awarded: #8b5cf6;
+    --status-closed: #6b7280;
+    
+    /* Neutral Colors */
+    --dark: #1f2937;
+    --light: #f3f4f6;
+    --border: #e5e7eb;
+    --text: #111827;
+    --text-light: #6b7280;
+    
+    /* Spacing */
+    --xs: 0.25rem;
+    --sm: 0.5rem;
+    --md: 1rem;
+    --lg: 1.5rem;
+    --xl: 2rem;
+    --2xl: 3rem;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    
+    /* Border Radius */
+    --radius-sm: 0.375rem;
+    --radius: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    
+    /* Transitions */
+    --transition: all 0.3s ease;
+}
+
+/* ============================================================================
+   RESET & BASE STYLES
+   ============================================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #f9fafb;
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+/* ============================================================================
+   NAVIGATION BAR
+   ============================================================================ */
+
+.navbar {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: var(--xl) 0;
+    box-shadow: var(--shadow-lg);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-section h1 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.logo-section .tagline {
+    font-size: 0.875rem;
+    opacity: 0.9;
+    margin: 0.25rem 0 0 0;
+}
+
+.nav-links {
+    display: flex;
+    gap: var(--xl);
+    align-items: center;
+}
+
+.nav-link {
+    color: white;
+    padding: var(--sm) var(--md);
+    border-radius: var(--radius);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: var(--sm);
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.btn-add {
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--sm) var(--lg);
+}
+
+.btn-add:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================================================
+   MAIN CONTAINER
+   ============================================================================ */
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--2xl) var(--xl);
+    width: 100%;
+}
+
+.page-header {
+    margin-bottom: var(--2xl);
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sm);
+    margin-bottom: var(--md);
+    color: var(--primary);
+    font-size: 0.875rem;
+}
+
+.back-link:hover {
+    color: var(--primary-dark);
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    margin: var(--md) 0 var(--sm) 0;
+    color: var(--dark);
+}
+
+.page-header p {
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+/* ============================================================================
+   STATISTICS GRID
+   ============================================================================ */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--lg);
+    margin-bottom: var(--2xl);
+}
+
+.stat-card {
+    background: white;
+    padding: var(--xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.stat-card i {
+    font-size: 2rem;
+    margin-bottom: var(--md);
+    opacity: 0.7;
+}
+
+.stat-card h3 {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--sm);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.stat-card.open { border-color: var(--status-open); }
+.stat-card.review { border-color: var(--status-under-review); }
+.stat-card.awarded { border-color: var(--status-awarded); }
+.stat-card.closed { border-color: var(--status-closed); }
+
+.stat-card.open .stat-number { color: var(--status-open); }
+.stat-card.review .stat-number { color: var(--status-under-review); }
+.stat-card.awarded .stat-number { color: var(--status-awarded); }
+.stat-card.closed .stat-number { color: var(--status-closed); }
+
+/* ============================================================================
+   SEARCH & FILTER
+   ============================================================================ */
+
+.search-filter-section {
+    background: white;
+    padding: var(--xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    margin-bottom: var(--2xl);
+}
+
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--md);
+    align-items: flex-end;
+}
+
+.search-group {
+    flex: 1;
+    min-width: 250px;
+}
+
+.search-input {
+    width: 100%;
+    padding: var(--md);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.filter-group {
+    min-width: 180px;
+}
+
+.filter-select {
+    width: 100%;
+    padding: var(--md);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    background-color: white;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.btn-filter {
+    padding: var(--md) var(--xl);
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: var(--sm);
+    white-space: nowrap;
+}
+
+.btn-filter:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ============================================================================
+   TENDERS SECTION
+   ============================================================================ */
+
+.tenders-section {
+    margin-bottom: var(--2xl);
+}
+
+.tenders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--lg);
+}
+
+.tender-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border-left: 5px solid var(--border);
+    display: flex;
+    flex-direction: column;
+}
+
+.tender-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+.tender-card.status-open { border-left-color: var(--status-open); }
+.tender-card.status-under-review { border-left-color: var(--status-under-review); }
+.tender-card.status-awarded { border-left-color: var(--status-awarded); }
+.tender-card.status-closed { border-left-color: var(--status-closed); }
+
+.tender-header {
+    padding: var(--lg);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--md);
+}
+
+.tender-title {
+    font-size: 1.125rem;
+    margin: 0;
+    color: var(--dark);
+}
+
+.status-badge {
+    padding: var(--xs) var(--md);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.status-badge.status-open { background: rgba(16, 185, 129, 0.1); color: var(--status-open); }
+.status-badge.status-under-review { background: rgba(245, 158, 11, 0.1); color: var(--status-under-review); }
+.status-badge.status-awarded { background: rgba(139, 92, 246, 0.1); color: var(--status-awarded); }
+.status-badge.status-closed { background: rgba(107, 114, 128, 0.1); color: var(--status-closed); }
+
+.tender-description {
+    padding: 0 var(--lg) var(--md);
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.tender-meta {
+    padding: 0 var(--lg) var(--lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sm);
+    flex: 1;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: var(--sm);
+    color: var(--text-light);
+    font-size: 0.875rem;
+}
+
+.meta-item i {
+    color: var(--primary);
+    width: 16px;
+}
+
+.btn-view {
+    margin: var(--md) var(--lg) var(--lg);
+    padding: var(--md) var(--lg);
+    background: var(--primary);
+    color: white;
+    border-radius: var(--radius);
+    text-align: center;
+    font-weight: 600;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sm);
+}
+
+.btn-view:hover {
+    background: var(--primary-dark);
+    color: white;
+}
+
+/* ============================================================================
+   NO RESULTS
+   ============================================================================ */
+
+.no-results {
+    text-align: center;
+    padding: var(--2xl) var(--xl);
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+}
+
+.no-results i {
+    font-size: 3rem;
+    color: var(--text-light);
+    margin-bottom: var(--md);
+    opacity: 0.5;
+}
+
+.no-results h3 {
+    font-size: 1.5rem;
+    color: var(--dark);
+    margin-bottom: var(--sm);
+}
+
+.no-results p {
+    color: var(--text-light);
+    margin-bottom: var(--lg);
+}
+
+/* ============================================================================
+   TENDER DETAIL PAGE
+   ============================================================================ */
+
+.tender-detail-container {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: var(--xl);
+}
+
+.tender-detail-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--xl);
+}
+
+.detail-section {
+    background: white;
+    padding: var(--xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+}
+
+.detail-section h2 {
+    font-size: 1.25rem;
+    margin-bottom: var(--lg);
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    gap: var(--md);
+}
+
+.tender-full-description {
+    color: var(--text);
+    line-height: 1.8;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--lg);
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sm);
+}
+
+.detail-item label {
+    font-weight: 600;
+    color: var(--text-light);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.detail-item p {
+    color: var(--text);
+    font-size: 1rem;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--lg);
+}
+
+.contact-item {
+    display: flex;
+    gap: var(--md);
+}
+
+.contact-item i {
+    font-size: 1.5rem;
+    color: var(--primary);
+    min-width: 24px;
+}
+
+.contact-item div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--xs);
+}
+
+.contact-item label {
+    font-weight: 600;
+    color: var(--text-light);
+    font-size: 0.875rem;
+}
+
+/* ============================================================================
+   SIDEBAR
+   ============================================================================ */
+
+.tender-detail-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--lg);
+}
+
+.action-panel,
+.info-panel {
+    background: white;
+    padding: var(--xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+}
+
+.action-panel h3,
+.info-panel h3 {
+    font-size: 1rem;
+    margin-bottom: var(--lg);
+    color: var(--dark);
+}
+
+.btn-full {
+    width: 100%;
+    padding: var(--md) var(--lg);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sm);
+    margin-bottom: var(--sm);
+}
+
+.btn-primary.btn-full {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary.btn-full:hover {
+    background: var(--primary-dark);
+}
+
+.btn-danger.btn-full {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-danger.btn-full:hover {
+    background: #dc2626;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--md) 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-item .label {
+    font-weight: 600;
+    color: var(--text-light);
+    font-size: 0.875rem;
+}
+
+.info-item .value {
+    color: var(--text);
+}
+
+/* ============================================================================
+   FORMS
+   ============================================================================ */
+
+.form-container {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+}
+
+.tender-form {
+    padding: var(--2xl);
+}
+
+.form-section {
+    margin-bottom: var(--2xl);
+}
+
+.form-section:last-child {
+    margin-bottom: 0;
+}
+
+.form-section h2 {
+    font-size: 1.25rem;
+    margin-bottom: var(--lg);
+    color: var(--dark);
+    padding-bottom: var(--md);
+    border-bottom: 2px solid var(--border);
+}
+
+.form-group {
+    margin-bottom: var(--lg);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--lg);
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: var(--sm);
+    color: var(--text);
+}
+
+label.required::after {
+    content: " *";
+    color: var(--danger);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: var(--md);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-actions {
+    display: flex;
+    gap: var(--md);
+    margin-top: var(--2xl);
+    padding-top: var(--xl);
+    border-top: 2px solid var(--border);
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-danger {
+    padding: var(--md) var(--xl);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sm);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: var(--light);
+    color: var(--text);
+}
+
+.btn-secondary:hover {
+    background: var(--border);
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+}
+
+/* ============================================================================
+   MODAL
+   ============================================================================ */
+
+.modal {
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: var(--2xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-content h2 {
+    margin-bottom: var(--md);
+    color: var(--dark);
+}
+
+.modal-content p {
+    color: var(--text-light);
+    margin-bottom: var(--xl);
+}
+
+.modal-actions {
+    display: flex;
+    gap: var(--md);
+    justify-content: flex-end;
+}
+
+/* ============================================================================
+   ERROR PAGE
+   ============================================================================ */
+
+.error-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+}
+
+.error-content {
+    text-align: center;
+}
+
+.error-content h1 {
+    font-size: 4rem;
+    color: var(--primary);
+    margin-bottom: var(--md);
+}
+
+.error-content h2 {
+    font-size: 2rem;
+    color: var(--dark);
+    margin-bottom: var(--md);
+}
+
+.error-content p {
+    color: var(--text-light);
+    margin-bottom: var(--xl);
+}
+
+/* ============================================================================
+   FOOTER
+   ============================================================================ */
+
+.footer {
+    background: linear-gradient(135deg, var(--dark) 0%, #374151 100%);
+    color: white;
+    text-align: center;
+    padding: var(--xl);
+    margin-top: auto;
+}
+
+.footer-content p {
+    margin: var(--sm) 0;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+
+@media (max-width: 768px) {
+    .main-container {
+        padding: var(--lg) var(--md);
+    }
+    
+    .page-header h1 {
+        font-size: 1.875rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .search-form {
+        flex-direction: column;
+    }
+    
+    .search-group,
+    .filter-group {
+        min-width: unset;
+    }
+    
+    .btn-filter {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .tenders-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tender-detail-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .tender-detail-sidebar {
+        display: none;
+    }
+    
+    .tender-form {
+        padding: var(--lg);
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+    
+    .nav-container {
+        flex-direction: column;
+        gap: var(--lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: var(--md);
+        width: 100%;
+    }
+    
+    .nav-link {
+        justify-content: center;
+    }
+    
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+}
