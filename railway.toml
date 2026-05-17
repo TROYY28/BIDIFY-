@@ -1,0 +1,8 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "npm run build && npx prisma db push && npm start"
+restartPolicyType = "on_failure"
+
+# Run sync every 4 hours via Railway cron service or external hit to /api/cron
